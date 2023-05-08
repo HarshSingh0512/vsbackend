@@ -48,20 +48,7 @@ namespace RestaurantAppProject.Controllers
             }
 
             return categoryTable;
-            
-
-
-
-
-
-
-
-
-
-
-
-
-        }
+            }
 
         // PUT: api/CategoryTables/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -96,8 +83,8 @@ namespace RestaurantAppProject.Controllers
 
         // POST: api/CategoryTables
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{menuId}, {displayOrder}")]
-        public async Task<ActionResult<CategoryTable>> PostCategoryTable(int menuId, CategoryTable categoryTable, int displayOrder)
+        [HttpPost("{menuId}")]
+        public async Task<ActionResult<CategoryTable>> PostCategoryTable(int menuId, CategoryTable categoryTable)
         {
           if (_context.CategoryTables == null)
           {
@@ -112,7 +99,7 @@ namespace RestaurantAppProject.Controllers
                 MenuCategory menuCategory = new MenuCategory();
                 menuCategory.MenuId = menuId;
                 menuCategory.CategoryId = categoryTable.CategoryId;
-                menuCategory.DisplayOrder = displayOrder;
+                
                 _context.MenuCategories.Add(menuCategory);
                 await _context.SaveChangesAsync();
 
